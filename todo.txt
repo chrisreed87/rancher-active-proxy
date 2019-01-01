@@ -1,0 +1,10 @@
+to fix 1/1/2019:
+1/1/2019 2:46:04 PMranchergen.1 | level=warning msg="Unexpected format of service port: 8082:8082"
+1/1/2019 2:46:04 PMranchergen.1 | level=info msg="[nginx -t]: \"2019/01/01 21:46:04 [emerg] 57#57: invalid parameter \\\"udp\\\" in /etc/nginx/conf.d/default.conf:348\""
+1/1/2019 2:46:04 PMranchergen.1 | level=info msg="[nginx -t]: \"nginx: [emerg] invalid parameter \\\"udp\\\" in /etc/nginx/conf.d/default.conf:348\""
+1/1/2019 2:47:00 PMcrond[50]: wakeup dt=60
+1/1/2019 2:47:00 PMcrond[50]: file root:
+1/1/2019 2:47:00 PMcrond[50]:  line /app/letsencrypt.sh
+1/1/2019 2:48:00 PMcrond[50]: wakeup dt=60
+1/1/2019 2:48:00 PMcrond[50]: file root:
+1/1/2019 2:48:00 PMcrond[50]:  line /app/letsencrypt.sh

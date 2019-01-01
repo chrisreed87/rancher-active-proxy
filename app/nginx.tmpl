@@ -139,7 +139,27 @@ server {
 
 
 {{- if or (not $is_https) (eq $https_method "noredirect") -}}
+{{- if eq $proto "udp" }}
+server {
+	server_name {{ $host }};
+	{{- range $port := $http_ports }}
+	listen {{$port}}  {{$proto}}  {{ $default_server }};
+	{{- end }}
+	access_log /var/log/nginx/access.log vhost;
 
+	{{- if (ne $token "") }}
+	server_tokens {{$token}};
+	{{- end }}
+	{{- if (ne $body_size "") }}
+	client_max_body_size {{$body_size}};
+	{{- end }}
+
+	{{- if (exists (printf "/etc/nginx/vhost.d/%s" $host)) }}
+	include {{ printf "/etc/nginx/vhost.d/%s" $host }};
+	{{- else if (exists "/etc/nginx/vhost.d/default") }}
+	include /etc/nginx/vhost.d/default;
+	{{- end }}
+{{- else }}
 server {
 	server_name {{ $host }};
 	{{- range $port := $http_ports }}
@@ -159,7 +179,7 @@ server {
 	{{- else if (exists "/etc/nginx/vhost.d/default") }}
 	include /etc/nginx/vhost.d/default;
 	{{- end }}
-
+{{- end }}
 	location / {
 		{{- if eq $proto "uwsgi" }}
 		include uwsgi_params;
